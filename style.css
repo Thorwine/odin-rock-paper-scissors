@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  font-family: sans-serif;
+  background-color: sienna;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.5em;
+}
