@@ -1,10 +1,8 @@
-// HTML-DOM > click on paragraph 'Play Now!'
+// HTML-DOM -- click event on paragraph id="playNow"
 document.getElementById('playNow').addEventListener('click', game)
 
-// ------------------------------------------------------------------------
 function game() {
-  // Main game function
-  // Loops through 5 rounds of the game
+  // Loops through 5 rounds of the game (Main function)
 
   let scorePlayer = 0;
   let scoreComputer = 0;
@@ -12,17 +10,17 @@ function game() {
 
   console.clear();
 
-  // loop for 5 rounds
+  // Loop for 5 rounds
   for (let i = 0; i < 5; i++) {
-    // get players choice
+    // Get players choice
     const playerSelection = playerPlay();
-    // get computers random choice
+    // Get computers random choice
     const computerSelection = computerPlay();
 
-    // get result from round
+    // Get result from round
     let resultRound = playRound(playerSelection, computerSelection)
 
-    // increase score to either player, computer or draw
+    // Increase score to either player, computer or draw
     switch (resultRound) {
       // +1 for the player
       case 'plusPlayer':
@@ -37,12 +35,15 @@ function game() {
         scoreDraw++;
         break;
     }
-  }
+  } // end for-loop
 
-  // get the winner + get/print win/lost message
-  console.log('%c' + determineWinner(scorePlayer, scoreComputer), 'background: #222; color: #bada55');
+  // Get winnerMessage
+  let winnerMessage = determineWinner(scorePlayer, scoreComputer);
 
-  // print out scores
+  // Print win/lost message
+  console.log('%c' + winnerMessage, 'background: #222; color: #bada55');
+
+  // Print out scores
   console.log('Score Player: ' + scorePlayer);
   console.log('Score Computer: ' + scoreComputer);
   console.log('Draws: ' + scoreDraw);
@@ -112,10 +113,10 @@ function playRound(playerSelection, computerSelection) {
 function computerPlay() {
   // Returns either ‘Rock’, ‘Paper’ or ‘Scissors’ (randomly)
 
-  // generate a random Integer from 1 to 3
+  // Generate a random Integer from 1 to 3
   let randomNumber = Math.floor(Math.random() * 3 + 1);
 
-  // return computers 'choice'
+  // Return computers 'choice'
   switch (randomNumber) {
     case 1:
       return ('Rock');
@@ -144,17 +145,13 @@ function playerPlay() {
     let firstLetterBig = playerInput.slice(0, 1).toUpperCase();
     // Combine first letter with player input (minus the first letter)
     playerInput = firstLetterBig + playerInput.slice(1);
-  } else {
-    // Promt was canceled
-    console.warn('Prompt empty')
-    return;
   }
 
-  // Check if input is false
+  // Check if input is false/empty or prompt is canceled
   if (!(playerInput === 'Rock' || playerInput === 'Paper' || playerInput === 'Scissors')) {
-    // False input, alert and exit
-    alert('Wrong input! Type \'Rock\', \'Paper\' or \'Scissors\'...');
-    process.exit(1);
+    // False input -- hard exit -- cannot happen with GUI later!
+    console.warn('Input is false, empty or canceled!');
+    process.exit();
   } else {
     // All good, return result!
     return (playerInput);
