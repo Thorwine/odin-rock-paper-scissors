@@ -3,6 +3,7 @@ document.getElementById('playNow').addEventListener('click', game)
 
 // ------------------------------------------------------------------------
 function game() {
+  // Main game function
   // Loops through 5 rounds of the game
 
   let scorePlayer = 0;
@@ -11,9 +12,8 @@ function game() {
 
   console.clear();
 
-  // start loop for 5 rounds
+  // loop for 5 rounds
   for (let i = 0; i < 5; i++) {
-
     // get players choice
     const playerSelection = playerPlay();
     // get computers random choice
@@ -22,7 +22,7 @@ function game() {
     // get result from round
     let resultRound = playRound(playerSelection, computerSelection)
 
-    // add score to either player, computer or draw
+    // increase score to either player, computer or draw
     switch (resultRound) {
       // +1 for the player
       case 'plusPlayer':
@@ -39,8 +39,8 @@ function game() {
     }
   }
 
-  // determine the winner, get and print win/lost message
-  console.warn(determineWinner(scorePlayer, scoreComputer));
+  // get the winner + get/print win/lost message
+  console.log('%c' + determineWinner(scorePlayer, scoreComputer), 'background: #222; color: #bada55');
 
   // print out scores
   console.log('Score Player: ' + scorePlayer);
@@ -112,8 +112,10 @@ function playRound(playerSelection, computerSelection) {
 function computerPlay() {
   // Returns either ‘Rock’, ‘Paper’ or ‘Scissors’ (randomly)
 
+  // generate a random Integer from 1 to 3
   let randomNumber = Math.floor(Math.random() * 3 + 1);
 
+  // return computers 'choice'
   switch (randomNumber) {
     case 1:
       return ('Rock');
@@ -131,6 +133,7 @@ function computerPlay() {
 function playerPlay() {
   // Returns either ‘Rock’, ‘Paper’ or ‘Scissors’ (by players choice)
 
+  // Get players choice
   let playerInput = prompt('Make your choice! Type \'Rock\', \'Paper\' or \'Scissors\'...');
 
   // Check if prompt is not empty
@@ -142,15 +145,16 @@ function playerPlay() {
     // Combine first letter with player input (minus the first letter)
     playerInput = firstLetterBig + playerInput.slice(1);
   } else {
-    // Promt is empty, exit game!
-    console.warn('Prompt empty > cancel!')
+    // Promt was canceled
+    console.warn('Prompt empty')
     return;
   }
 
-  // Check if result is false
+  // Check if input is false
   if (!(playerInput === 'Rock' || playerInput === 'Paper' || playerInput === 'Scissors')) {
-    // False result > call prompt again!
-    playerPlay();
+    // False input, alert and exit
+    alert('Wrong input! Type \'Rock\', \'Paper\' or \'Scissors\'...');
+    process.exit(1);
   } else {
     // All good, return result!
     return (playerInput);

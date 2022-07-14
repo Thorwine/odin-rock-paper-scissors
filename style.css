@@ -21,7 +21,11 @@ p {
   margin-bottom: 10px;
 }
 
+#playNow {
+  color: darkgray;
+}
+
 #playNow:hover {
   cursor: pointer;
-  color: darkgray;
+  color: darkred;
 }
