@@ -1,11 +1,64 @@
 // HTML-DOM > click on paragraph 'Play Now!'
-document.getElementById('playNow').addEventListener('click', test)
+document.getElementById('playNow').addEventListener('click', game)
 
-function test() {
-  const playerSelection = playerPlay();
-  const computerSelection = computerPlay();
+// ------------------------------------------------------------------------
+function game() {
+  // Loops through 5 rounds of the game
 
-  console.log(playRound(playerSelection, computerSelection));
+  let scorePlayer = 0;
+  let scoreComputer = 0;
+  let scoreDraw = 0;
+
+  console.clear();
+
+  // start loop for 5 rounds
+  for (let i = 0; i < 5; i++) {
+
+    // get players choice
+    const playerSelection = playerPlay();
+    // get computers random choice
+    const computerSelection = computerPlay();
+
+    // get result from round
+    let resultRound = playRound(playerSelection, computerSelection)
+
+    // add score to either player, computer or draw
+    switch (resultRound) {
+      // +1 for the player
+      case 'plusPlayer':
+        scorePlayer++;
+        break;
+      // +1 for the computer
+      case 'plusComputer':
+        scoreComputer++;
+        break;
+      // +1 for the draws
+      case 'plusDraw':
+        scoreDraw++;
+        break;
+    }
+  }
+
+  // determine the winner, get and print win/lost message
+  console.warn(determineWinner(scorePlayer, scoreComputer));
+
+  // print out scores
+  console.log('Score Player: ' + scorePlayer);
+  console.log('Score Computer: ' + scoreComputer);
+  console.log('Draws: ' + scoreDraw);
+}
+
+// ------------------------------------------------------------------------
+function determineWinner(scorePlayer, scoreComputer) {
+  // Returns the win/lost message
+
+  if (scorePlayer === scoreComputer) {
+    return 'It\'s a draw!';
+  } else if (scorePlayer > scoreComputer) {
+    return 'You win the game!';
+  } else if (scorePlayer < scoreComputer) {
+    return 'You lost the game!';
+  }
 }
 
 // ------------------------------------------------------------------------
@@ -17,31 +70,40 @@ function playRound(playerSelection, computerSelection) {
     case 'Rock':
       switch (computerSelection) {
         case 'Rock':
-          return ('Draw! Rock vs. Rock');
+          console.log('Draw! Rock vs. Rock');
+          return 'plusDraw';
         case 'Paper':
-          return ('You lose! Paper beats Rock')
+          console.log('You lose! Paper beats Rock');
+          return 'plusComputer';
         case 'Scissors':
-          return ('You win! Rock beats Scissors')
+          console.log('You win! Rock beats Scissors');
+          return 'plusPlayer';
       }
     // Player 'Paper'
     case 'Paper':
       switch (computerSelection) {
         case 'Rock':
-          return ('You win! Paper beats Rock');
+          console.log('You win! Paper beats Rock');
+          return 'plusPlayer';
         case 'Paper':
-          return ('Draw! Paper vs. Paper');
+          console.log('Draw! Paper vs. Paper');
+          return 'plusDraw';
         case 'Scissors':
-          return ('You lose! Scissors beats Paper');
+          console.log('You lose! Scissors beats Paper');
+          return 'plusComputer';
       }
     // Player 'Scissors'
     case 'Scissors':
       switch (computerSelection) {
         case 'Rock':
-          return ('You lose! Rock beats Scissors');
+          console.log('You lose! Rock beats Scissors');
+          return 'plusComputer';
         case 'Paper':
-          return ('You win! Scissors beats Paper');
+          console.log('You win! Scissors beats Paper');
+          return 'plusPlayer';
         case 'Scissors':
-          return ('Draw! Scissors vs. Scissors');
+          console.log('Draw! Scissors vs. Scissors');
+          return 'plusDraw';
       }
   }
 }
