@@ -18,7 +18,7 @@ function game() {
     const computerSelection = computerPlay();
 
     // Get result from round
-    let resultRound = playRound(playerSelection, computerSelection)
+    let resultRound = playRound(playerSelection, computerSelection);
 
     // Increase score to either player, computer or draw
     switch (resultRound) {
