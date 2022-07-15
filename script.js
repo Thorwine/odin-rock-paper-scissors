@@ -13,9 +13,9 @@ function game() {
   // Loop for 5 rounds
   for (let i = 0; i < 5; i++) {
     // Get players choice
-    const playerSelection = playerPlay();
+    const playerSelection = getPlayerChoice();
     // Get computers random choice
-    const computerSelection = computerPlay();
+    const computerSelection = getComputerChoice();
 
     // Get result from round
     let resultRound = playRound(playerSelection, computerSelection);
@@ -110,7 +110,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // ------------------------------------------------------------------------
-function computerPlay() {
+function getComputerChoice() {
   // Returns either ‘Rock’, ‘Paper’ or ‘Scissors’ (randomly)
 
   // Generate a random Integer from 1 to 3
@@ -131,7 +131,7 @@ function computerPlay() {
 }
 
 // ------------------------------------------------------------------------
-function playerPlay() {
+function getPlayerChoice() {
   // Returns either ‘Rock’, ‘Paper’ or ‘Scissors’ (by players choice)
 
   // Get players choice
