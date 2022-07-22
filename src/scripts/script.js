@@ -1,5 +1,41 @@
+// ------------------------------------------------------------------------
+// UI Development
+// ------------------------------------------------------------------------
+
+const rock = document.querySelector('#rock');
+rock.addEventListener('click', function () { gameUI(rock.id) });
+
+const paper = document.querySelector('#paper');
+paper.addEventListener('click', function () { gameUI(paper.id) });
+
+const scissors = document.querySelector('#scissors');
+scissors.addEventListener('click', function () { gameUI(scissors.id) });
+
+// ------------------------------------------------------------------------
+
+function gameUI(playerSelection) {
+
+  let firstLetterBig = playerSelection.slice(0, 1).toUpperCase();
+  playerSelection = firstLetterBig + playerSelection.slice(1);
+
+  const computerSelection = getComputerChoice();
+
+  console.log(playerSelection);
+  console.log(computerSelection);
+
+}
+
+
+
+
+
+
+
+
+// ------------------------------------------------------------------------
 // HTML-DOM -- click event on paragraph id="playNow"
-document.getElementById('playNow').addEventListener('click', game)
+// document.getElementById('playNow').addEventListener('click', game)
+// ------------------------------------------------------------------------
 
 function game() {
   // Loops through 5 rounds of the game (Main function)
