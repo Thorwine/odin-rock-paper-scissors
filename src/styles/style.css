@@ -22,15 +22,26 @@ h2 {
 }
 
 .header {
-  outline: 1px solid limegreen !important;
+  /* outline: 1px solid limegreen !important; */
   color: sienna;
-  border-style: solid;
-  border-width: 0 0 1px 0;
+  margin-bottom: 20px;
+}
+
+.parties {
+  /* outline: 1px solid limegreen !important; */
+  color: sienna;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.container {
+  /* outline: 1px solid limegreen !important; */
+  color: sienna;
   margin-bottom: 20px;
 }
 
 .playfield {
-  outline: 1px solid limegreen !important;
+  /* outline: 1px solid limegreen !important; */
   color: sienna;
   text-align: center;
   border-width: 0 0 1px 0;
@@ -40,4 +51,13 @@ h2 {
 .buttons {
   display: flex;
   gap: 50px;
+}
+
+#newGame {
+  width: 300px;
+  height: 50px;
+  background-color: sienna;
+  color: darkgray;
+  font-weight: bold;
+  font-size: 1.5em;
 }

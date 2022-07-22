@@ -1,38 +1,121 @@
 // ------------------------------------------------------------------------
-// UI Development
+// Version 2.0 (with UI)
 // ------------------------------------------------------------------------
 
 const rock = document.querySelector('#rock');
-rock.addEventListener('click', function () { gameUI(rock.id) });
+rock.addEventListener('click', function () { clickCard(rock.id) });
 
 const paper = document.querySelector('#paper');
-paper.addEventListener('click', function () { gameUI(paper.id) });
+paper.addEventListener('click', function () { clickCard(paper.id) });
 
 const scissors = document.querySelector('#scissors');
-scissors.addEventListener('click', function () { gameUI(scissors.id) });
+scissors.addEventListener('click', function () { clickCard(scissors.id) });
+
+const buttons = document.querySelector('.buttons');
+
+const newGame = document.querySelector('#newGame');
+newGame.addEventListener('click', resetGame);
+
+const playerScore = document.querySelector('#playerScore');
+const computerScore = document.querySelector('#computerScore');
+const drawScore = document.querySelector('#drawScore');
+
+const message = document.querySelector('#message');
+
+playerScore.textContent = '0';
+computerScore.textContent = '0';
+drawScore.textContent = '0';
+
+let scorePlayer = 0;
+let scoreComputer = 0;
+let scoreDraw = 0;
+
+console.clear();
 
 // ------------------------------------------------------------------------
 
-function gameUI(playerSelection) {
+function clickCard(playerSelection) {
+  // Takes the playerSelection, gets computerSelection and calls playRound
 
+  // Only proceed if buttons are not locked
+  if (buttons.getAttribute('disabled') === 'true') { return };
+
+  // Convert first letter to upper case
   let firstLetterBig = playerSelection.slice(0, 1).toUpperCase();
+  // Combine first letter with player input (minus the first letter)
   playerSelection = firstLetterBig + playerSelection.slice(1);
 
+  // Get computers random choice
   const computerSelection = getComputerChoice();
 
-  console.log(playerSelection);
-  console.log(computerSelection);
+  // console.log(playerSelection);
+  // console.log(computerSelection);
+
+  // Get result from round
+  let resultRound = playRound(playerSelection, computerSelection);
+  console.log('Player: ' + playerSelection + ' vs. ' + 'Computer: ' + computerSelection);
+
+  // Increase score to either player, computer or draw
+  switch (resultRound) {
+    // +1 for the player
+    case 'plusPlayer':
+      scorePlayer++;
+      break;
+    // +1 for the computer
+    case 'plusComputer':
+      scoreComputer++;
+      break;
+    // +1 for the draws
+    case 'plusDraw':
+      scoreDraw++;
+      break;
+  }
+
+  playerScore.textContent = scorePlayer;
+  computerScore.textContent = scoreComputer;
+  drawScore.textContent = scoreDraw;
+
+  console.log('Score Player: ' + scorePlayer);
+  console.log('Score Computer: ' + scoreComputer);
+  console.log('Score Draws: ' + scoreDraw);
+
+  // Determine the winner
+  if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
+}
+
+function determineWinnerUI(scorePlayer, scoreComputer) {
+  // Give Win/Lost Message, Lock buttons, Activate New Game button
+
+  console.log('GAME OVER');
+
+  // Lock buttons
+  buttons.setAttribute('disabled', 'true');
+
+  // Win/Lost Message
+  if (scorePlayer === 5) { message.textContent = 'You won!' };
+  if (scoreComputer === 5) { message.textContent = 'You lost!' };
 
 }
 
+function resetGame() {
+  // Sets everything to ZERO and enables the cards again
 
+  playerScore.textContent = '0';
+  computerScore.textContent = '0';
+  drawScore.textContent = '0';
 
+  scorePlayer = 0;
+  scoreComputer = 0;
+  scoreDraw = 0;
 
+  message.textContent = ('Choose your cards!');
+  buttons.setAttribute('disabled', 'false');
 
-
-
+  console.clear();
+}
 
 // ------------------------------------------------------------------------
+// Version 1.0 (console only)
 // HTML-DOM -- click event on paragraph id="playNow"
 // document.getElementById('playNow').addEventListener('click', game)
 // ------------------------------------------------------------------------
