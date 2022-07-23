@@ -5,6 +5,7 @@
 // Selectors for <div class="button" id="rock/paper/scissors"> & EventListeners
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', function () { clickCard(rock.id) });
+
 const paper = document.querySelector('#paper');
 paper.addEventListener('click', function () { clickCard(paper.id) });
 const scissors = document.querySelector('#scissors');
@@ -12,8 +13,6 @@ scissors.addEventListener('click', function () { clickCard(scissors.id) });
 
 // Selector for <div class="buttons">
 const buttons = document.querySelector('.buttons');
-console.log(buttons);
-
 
 // Selector for <h2 id="message">
 const message = document.querySelector('#message');
@@ -39,10 +38,10 @@ let scoreDraw = 0;
 
 //console.clear();
 
-// ------------------------------------------------------------------------
-
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound
+
+  playSound(playerSelection);
 
   // Only proceed if buttons are not disabled
   if (buttons.getAttribute('disabled') === 'true') { return };
@@ -82,6 +81,14 @@ function clickCard(playerSelection) {
 
   // If one score reaches 5 -> determine the winner
   if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
+}
+
+function playSound(playerSelection) {
+  // Play a funky sound for each card
+
+  const audio = document.querySelector('#audio_' + playerSelection);
+  audio.currentTime = 0;
+  audio.play();
 }
 
 function determineWinnerUI(scorePlayer, scoreComputer) {

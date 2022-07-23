@@ -50,7 +50,7 @@ h2 {
   color: #a2a86a;
   text-align: center;
   border-width: 0 0 1px 0;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .button {
@@ -79,7 +79,7 @@ h2 {
   border-style: none;
   box-shadow: 2px 5px 20px black;
   transition-duration: 0.5s;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 #newGame:hover {
