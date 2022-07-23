@@ -5,7 +5,6 @@
 // Selectors for <div class="button" id="rock/paper/scissors"> & EventListeners
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', function () { clickCard(rock.id) });
-
 const paper = document.querySelector('#paper');
 paper.addEventListener('click', function () { clickCard(paper.id) });
 const scissors = document.querySelector('#scissors');
@@ -41,10 +40,11 @@ let scoreDraw = 0;
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound
 
-  playSound(playerSelection);
-
   // Only proceed if buttons are not disabled
   if (buttons.getAttribute('disabled') === 'true') { return };
+
+  // Play a funky sound
+  playSound(playerSelection);
 
   // Convert first letter to upper case
   let firstLetterBig = playerSelection.slice(0, 1).toUpperCase();
@@ -83,20 +83,27 @@ function clickCard(playerSelection) {
   if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
 }
 
-function playSound(playerSelection) {
+function playSound(sound) {
   // Play a funky sound for each card
 
-  const audio = document.querySelector('#audio_' + playerSelection);
+  const audio = document.querySelector('#audio_' + sound);
   audio.currentTime = 0;
   audio.play();
 }
 
 function determineWinnerUI(scorePlayer, scoreComputer) {
-  // Give Win/Lost message and disable buttons
+  // Give Win/Lost message, play sound and disable buttons
 
   // Win/Lost message
-  if (scorePlayer === 5) { message.textContent = 'You won!' };
-  if (scoreComputer === 5) { message.textContent = 'You lost!' };
+  if (scorePlayer === 5) {
+    message.textContent = 'You won!';
+    playSound('gamewon');
+  };
+
+  if (scoreComputer === 5) {
+    message.textContent = 'You lost!';
+    playSound('gamelost');
+  };
 
   // Lock buttons
   buttons.setAttribute('disabled', 'true');
