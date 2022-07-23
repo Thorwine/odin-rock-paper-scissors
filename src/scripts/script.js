@@ -2,30 +2,35 @@
 // Version 2.0 (with UI)
 // ------------------------------------------------------------------------
 
+// Selectors for <div class="button" id="rock/paper/scissors"> & EventListeners
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', function () { clickCard(rock.id) });
-
 const paper = document.querySelector('#paper');
 paper.addEventListener('click', function () { clickCard(paper.id) });
-
 const scissors = document.querySelector('#scissors');
 scissors.addEventListener('click', function () { clickCard(scissors.id) });
 
+// Selector for <div class="buttons">
 const buttons = document.querySelector('.buttons');
 
+// Selector for <h2 id="message">
+const message = document.querySelector('#message');
+
+// Selector for <button id="newGame"> & EventListener
 const newGame = document.querySelector('#newGame');
 newGame.addEventListener('click', resetGame);
 
+// Selector for <span id="playerScore/computerScore/drawScore"></span>
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 const drawScore = document.querySelector('#drawScore');
 
-const message = document.querySelector('#message');
-
+// UI-text to show the scores
 playerScore.textContent = '0';
 computerScore.textContent = '0';
 drawScore.textContent = '0';
 
+// Variables to count the scores
 let scorePlayer = 0;
 let scoreComputer = 0;
 let scoreDraw = 0;
@@ -37,7 +42,7 @@ console.clear();
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound
 
-  // Only proceed if buttons are not locked
+  // Only proceed if buttons are not disabled
   if (buttons.getAttribute('disabled') === 'true') { return };
 
   // Convert first letter to upper case
@@ -55,50 +60,41 @@ function clickCard(playerSelection) {
   let resultRound = playRound(playerSelection, computerSelection);
   console.log('Player: ' + playerSelection + ' vs. ' + 'Computer: ' + computerSelection);
 
-  // Increase score to either player, computer or draw
+  // Increase score and update UI
   switch (resultRound) {
     // +1 for the player
     case 'plusPlayer':
-      scorePlayer++;
+      playerScore.textContent = ++scorePlayer;
       break;
     // +1 for the computer
     case 'plusComputer':
-      scoreComputer++;
+      computerScore.textContent = ++scoreComputer;
       break;
     // +1 for the draws
     case 'plusDraw':
-      scoreDraw++;
+      drawScore.textContent = ++scoreDraw;
       break;
   }
 
-  playerScore.textContent = scorePlayer;
-  computerScore.textContent = scoreComputer;
-  drawScore.textContent = scoreDraw;
+  console.log('Player: ' + scorePlayer + ' Computer: ' + scoreComputer + ' Draws: ' + scoreDraw);
 
-  console.log('Score Player: ' + scorePlayer);
-  console.log('Score Computer: ' + scoreComputer);
-  console.log('Score Draws: ' + scoreDraw);
-
-  // Determine the winner
+  // If one score reaches 5 -> determine the winner
   if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
 }
 
 function determineWinnerUI(scorePlayer, scoreComputer) {
-  // Give Win/Lost Message, Lock buttons, Activate New Game button
+  // Give Win/Lost message and disable buttons
 
-  console.log('GAME OVER');
-
-  // Lock buttons
-  buttons.setAttribute('disabled', 'true');
-
-  // Win/Lost Message
+  // Win/Lost message
   if (scorePlayer === 5) { message.textContent = 'You won!' };
   if (scoreComputer === 5) { message.textContent = 'You lost!' };
 
+  // Lock buttons
+  buttons.setAttribute('disabled', 'true');
 }
 
 function resetGame() {
-  // Sets everything to ZERO and enables the cards again
+  // Reset all and enable the buttons again
 
   playerScore.textContent = '0';
   computerScore.textContent = '0';
@@ -116,6 +112,8 @@ function resetGame() {
 
 // ------------------------------------------------------------------------
 // Version 1.0 (console only)
+// ------------------------------------------------------------------------
+
 // HTML-DOM -- click event on paragraph id="playNow"
 // document.getElementById('playNow').addEventListener('click', game)
 // ------------------------------------------------------------------------
