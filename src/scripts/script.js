@@ -3,6 +3,7 @@
 // ------------------------------------------------------------------------
 
 // Selectors for <div class="button" id="rock/paper/scissors"> & EventListeners
+// Memo: Could be done with forEach next time ;)
 const rock = document.querySelector('#rock');
 rock.addEventListener('click', function () { clickCard(rock.id) });
 const paper = document.querySelector('#paper');
@@ -35,7 +36,7 @@ let scorePlayer = 0;
 let scoreComputer = 0;
 let scoreDraw = 0;
 
-//console.clear();
+// console.clear();
 
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound

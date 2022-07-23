@@ -49,7 +49,6 @@ h2 {
 .playfield {
   color: #a2a86a;
   text-align: center;
-  border-width: 0 0 1px 0;
   margin-bottom: 40px;
 }
 
@@ -90,4 +89,5 @@ h2 {
 .footer {
   color: #a2a86a;
   text-align: center;
+  line-height: 1.5em;
 }
