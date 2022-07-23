@@ -12,6 +12,8 @@ scissors.addEventListener('click', function () { clickCard(scissors.id) });
 
 // Selector for <div class="buttons">
 const buttons = document.querySelector('.buttons');
+console.log(buttons);
+
 
 // Selector for <h2 id="message">
 const message = document.querySelector('#message');
@@ -35,7 +37,7 @@ let scorePlayer = 0;
 let scoreComputer = 0;
 let scoreDraw = 0;
 
-console.clear();
+//console.clear();
 
 // ------------------------------------------------------------------------
 

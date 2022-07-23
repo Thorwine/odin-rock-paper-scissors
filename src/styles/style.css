@@ -8,7 +8,7 @@
 
 html {
   font-family: 'Roboto', sans-serif;
-  background-color: #0D2636;
+  background-color: #1F3145;
 }
 
 body {
@@ -22,30 +22,45 @@ h2 {
 }
 
 .header {
-  /* outline: 1px solid limegreen !important; */
   color: sienna;
+  margin-top: 20px;
   margin-bottom: 20px;
+  font-size: 2em;
 }
 
 .parties {
-  /* outline: 1px solid limegreen !important; */
-  color: sienna;
+  color: #a2a86a;
   margin-bottom: 20px;
   font-size: 1.5em;
 }
 
-.container {
-  /* outline: 1px solid limegreen !important; */
+#playerScore,
+#computerScore,
+#drawScore {
   color: sienna;
+  font-size: 1.57em;
+}
+
+.message {
+  color: #a2a86a;
   margin-bottom: 20px;
 }
 
 .playfield {
-  /* outline: 1px solid limegreen !important; */
-  color: sienna;
+  color: #a2a86a;
   text-align: center;
   border-width: 0 0 1px 0;
   margin-bottom: 20px;
+}
+
+.button {
+  border-radius: 20px;
+  box-shadow: 2px 5px 20px black;
+  transition-duration: 0.5s;
+}
+
+.button:hover {
+  transform: scale(1.03);
 }
 
 .buttons {
@@ -54,10 +69,24 @@ h2 {
 }
 
 #newGame {
-  width: 300px;
-  height: 50px;
-  background-color: sienna;
-  color: darkgray;
+  width: 200px;
+  height: 40px;
+  background-color: #a2a86a;
+  color: #20170e;
   font-weight: bold;
   font-size: 1.5em;
+  border-radius: 20px;
+  border-style: none;
+  box-shadow: 2px 5px 20px black;
+  transition-duration: 0.5s;
+  margin-bottom: 20px;
+}
+
+#newGame:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.footer {
+  color: #a2a86a;
 }
