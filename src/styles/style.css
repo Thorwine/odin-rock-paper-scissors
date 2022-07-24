@@ -82,6 +82,7 @@ h2 {
 }
 
 #newGame:hover {
+  background-color: sienna;
   cursor: pointer;
   transform: scale(1.05);
 }
