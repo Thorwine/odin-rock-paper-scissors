@@ -11,11 +11,11 @@ paper.addEventListener('click', function () { clickCard(paper.id) });
 const scissors = document.querySelector('#scissors');
 scissors.addEventListener('click', function () { clickCard(scissors.id) });
 
-// Selector for <div class="buttons">
-const buttons = document.querySelector('.buttons');
-
 // Selector for <h2 id="message">
 const message = document.querySelector('#message');
+
+// Selector for <div class="buttons">
+const buttons = document.querySelector('.buttons');
 
 // Selector for <button id="newGame"> & EventListener
 const newGame = document.querySelector('#newGame');
@@ -24,12 +24,10 @@ newGame.addEventListener('click', resetGame);
 // Selector for <span id="playerScore/computerScore/drawScore"></span>
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
-const drawScore = document.querySelector('#drawScore');
 
 // UI-text to show the scores
 playerScore.textContent = '0';
 computerScore.textContent = '0';
-drawScore.textContent = '0';
 
 // Variables to count the scores
 let scorePlayer = 0;
@@ -72,16 +70,36 @@ function clickCard(playerSelection) {
     case 'plusComputer':
       computerScore.textContent = ++scoreComputer;
       break;
-    // +1 for the draws
-    case 'plusDraw':
-      drawScore.textContent = ++scoreDraw;
-      break;
   }
 
-  console.log('Player: ' + scorePlayer + ' Computer: ' + scoreComputer + ' Draws: ' + scoreDraw);
+  // Show the cards of both combatants
+  setCards(playerSelection, computerSelection);
 
   // If one score reaches 5 -> determine the winner
   if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
+
+  // console.log('Player: ' + scorePlayer + ' Computer: ' + scoreComputer + ' Draws: ' + scoreDraw);
+}
+
+function setCards(playerSelection, computerSelection) {
+  // Show the cards of both combatants
+
+  let imgPlayer = document.createElement('img');
+  let imgComputer = document.createElement('img');
+
+  imgPlayer.src = './src/images/' + playerSelection.toLowerCase() + '.png';
+  imgComputer.src = './src/images/' + computerSelection.toLowerCase() + '.png';
+
+  imgPlayer.style.width = '70px';
+  imgComputer.style.width = '70px';
+
+  let cardPlayer = document.querySelector('#cardPlayer');
+  if (cardPlayer.firstElementChild) { cardPlayer.removeChild(cardPlayer.firstElementChild) };
+  cardPlayer.appendChild(imgPlayer);
+
+  let cardComputer = document.querySelector('#cardComputer');
+  if (cardComputer.firstElementChild) { cardComputer.removeChild(cardComputer.firstElementChild) };
+  cardComputer.appendChild(imgComputer);
 }
 
 function playSound(sound) {
@@ -115,7 +133,6 @@ function resetGame() {
 
   playerScore.textContent = '0';
   computerScore.textContent = '0';
-  drawScore.textContent = '0';
 
   scorePlayer = 0;
   scoreComputer = 0;
@@ -123,6 +140,12 @@ function resetGame() {
 
   message.textContent = ('Choose your cards!');
   buttons.setAttribute('disabled', 'false');
+
+  // Remove the cards shown for both combatants
+  let cardPlayer = document.querySelector('#cardPlayer');
+  if (cardPlayer.firstElementChild) { cardPlayer.removeChild(cardPlayer.firstElementChild) };
+  let cardComputer = document.querySelector('#cardComputer');
+  if (cardComputer.firstElementChild) { cardComputer.removeChild(cardComputer.firstElementChild) };
 
   console.clear();
 }

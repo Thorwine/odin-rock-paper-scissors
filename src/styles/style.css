@@ -17,9 +17,12 @@ body {
   align-items: center;
 }
 
+h1,
 h2 {
   margin-bottom: 20px;
 }
+
+/* ------------------------------------------------------------------------ */
 
 .header {
   color: #a2a86a;
@@ -28,10 +31,23 @@ h2 {
   font-size: 2em;
 }
 
+/* ------------------------------------------------------------------------ */
+
 .parties {
   color: #a2a86a;
-  margin-bottom: 20px;
   font-size: 1.5em;
+  margin-bottom: 30px;
+  height: 60px;
+
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.combatant {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #playerScore,
@@ -41,15 +57,23 @@ h2 {
   font-size: 1.57em;
 }
 
+.cards {
+  width: 140px;
+  display: flex;
+}
+
+/* ------------------------------------------------------------------------ */
+
 .message {
   color: #a2a86a;
-  margin-bottom: 20px;
 }
+
+/* ------------------------------------------------------------------------ */
 
 .playfield {
   color: #a2a86a;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .button {
@@ -66,6 +90,8 @@ h2 {
   display: flex;
   gap: 50px;
 }
+
+/* ------------------------------------------------------------------------ */
 
 #newGame {
   width: 200px;
@@ -86,6 +112,8 @@ h2 {
   cursor: pointer;
   transform: scale(1.05);
 }
+
+/* ------------------------------------------------------------------------ */
 
 .footer {
   color: #a2a86a;
