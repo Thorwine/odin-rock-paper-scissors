@@ -25,7 +25,7 @@ newGame.addEventListener('click', resetGame);
 const playerScore = document.querySelector('#playerScore');
 const computerScore = document.querySelector('#computerScore');
 
-// UI-text to show the scores
+// UI-text to initialize the scores
 playerScore.textContent = '0';
 computerScore.textContent = '0';
 
@@ -33,8 +33,6 @@ computerScore.textContent = '0';
 let scorePlayer = 0;
 let scoreComputer = 0;
 let scoreDraw = 0;
-
-// console.clear();
 
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound
@@ -69,7 +67,7 @@ function clickCard(playerSelection) {
       break;
   }
 
-  // Show the cards of both combatants
+  // Remove and show the selected cards of both combatants with a short delay
   let myTimeout;
   removeCardPlayer();
   myTimeout = setTimeout(() => { setCardPlayer(playerSelection) }, 400);
