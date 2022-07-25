@@ -53,9 +53,6 @@ function clickCard(playerSelection) {
   // Get computers random choice
   const computerSelection = getComputerChoice();
 
-  // console.log(playerSelection);
-  // console.log(computerSelection);
-
   // Get result from round
   let resultRound = playRound(playerSelection, computerSelection);
   console.log('Player: ' + playerSelection + ' vs. ' + 'Computer: ' + computerSelection);
@@ -73,32 +70,40 @@ function clickCard(playerSelection) {
   }
 
   // Show the cards of both combatants
-  setCards(playerSelection, computerSelection);
+  let myTimeout;
+  removeCardPlayer();
+  myTimeout = setTimeout(() => { setCardPlayer(playerSelection) }, 400);
+  removeCardComputer();
+  myTimeout = setTimeout(() => { setCardComputer(computerSelection) }, 400);
 
   // If one score reaches 5 -> determine the winner
   if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
 
-  // console.log('Player: ' + scorePlayer + ' Computer: ' + scoreComputer + ' Draws: ' + scoreDraw);
 }
 
-function setCards(playerSelection, computerSelection) {
-  // Show the cards of both combatants
-
-  let imgPlayer = document.createElement('img');
-  let imgComputer = document.createElement('img');
-
-  imgPlayer.src = './src/images/' + playerSelection.toLowerCase() + '.png';
-  imgComputer.src = './src/images/' + computerSelection.toLowerCase() + '.png';
-
-  imgPlayer.style.width = '70px';
-  imgComputer.style.width = '70px';
-
+function removeCardPlayer() {
   let cardPlayer = document.querySelector('#cardPlayer');
   if (cardPlayer.firstElementChild) { cardPlayer.removeChild(cardPlayer.firstElementChild) };
-  cardPlayer.appendChild(imgPlayer);
+}
 
+function setCardPlayer(playerSelection) {
+  let imgPlayer = document.createElement('img');
+  imgPlayer.src = './src/images/' + playerSelection.toLowerCase() + '.png';
+  imgPlayer.style.width = '70px';
+  let cardPlayer = document.querySelector('#cardPlayer');
+  cardPlayer.appendChild(imgPlayer);
+}
+
+function removeCardComputer() {
   let cardComputer = document.querySelector('#cardComputer');
   if (cardComputer.firstElementChild) { cardComputer.removeChild(cardComputer.firstElementChild) };
+}
+
+function setCardComputer(computerSelection) {
+  let imgComputer = document.createElement('img');
+  imgComputer.src = './src/images/' + computerSelection.toLowerCase() + '.png';
+  imgComputer.style.width = '70px';
+  let cardComputer = document.querySelector('#cardComputer');
   cardComputer.appendChild(imgComputer);
 }
 
