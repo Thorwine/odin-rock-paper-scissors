@@ -37,9 +37,10 @@ let scoreDraw = 0;
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound
 
+  // Variable for different delays
   let myTimeout;
 
-  // Only proceed if buttons are not disabled
+  // Only proceed here if buttons are not disabled
   if (buttons.getAttribute('disabled') === 'true') { return };
 
   // Play a funky sound
@@ -136,7 +137,6 @@ function playSound(sound) {
 function determineWinnerUI(scorePlayer, scoreComputer) {
   // Give Win/Lost message, play sound and disable buttons
 
-  // Win/Lost message
   if (scorePlayer === 5) {
     setMessage('You won the game!');
     playSound('gamewon');

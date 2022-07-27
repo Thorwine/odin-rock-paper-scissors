@@ -2,8 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* outline: 1px solid limegreen !important; */
-  /* background: rgb(0 100 0 / 0.05) !important; */
 }
 
 html {
@@ -22,12 +20,7 @@ h2 {
   margin-bottom: 20px;
 }
 
-.button img {
-  height: 250px;
-}
-
 /* ------------------------------------------------------------------------ */
-
 .header {
   color: #a2a86a;
   margin-top: 20px;
@@ -36,7 +29,6 @@ h2 {
 }
 
 /* ------------------------------------------------------------------------ */
-
 .parties {
   color: #a2a86a;
   font-size: 1.5em;
@@ -72,13 +64,11 @@ h2 {
 }
 
 /* ------------------------------------------------------------------------ */
-
 .message {
   color: #a2a86a;
 }
 
 /* ------------------------------------------------------------------------ */
-
 .playfield {
   color: #a2a86a;
   text-align: center;
@@ -95,13 +85,16 @@ h2 {
   transform: scale(1.07);
 }
 
+.button img {
+  height: 250px;
+}
+
 .buttons {
   display: flex;
   gap: 50px;
 }
 
 /* ------------------------------------------------------------------------ */
-
 #newGame {
   width: 200px;
   height: 40px;
@@ -123,7 +116,6 @@ h2 {
 }
 
 /* ------------------------------------------------------------------------ */
-
 .footer {
   color: #a2a86a;
   text-align: center;
