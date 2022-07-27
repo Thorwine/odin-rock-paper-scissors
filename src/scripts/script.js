@@ -60,18 +60,22 @@ function clickCard(playerSelection) {
   // Increase score and update UI
   switch (resultRound) {
     case 'plusPlayer':
-      playerScore.textContent = ++scorePlayer;
+      ++scorePlayer;
+      myTimeout = setTimeout(() => { playerScore.textContent = scorePlayer }, 400);
       if (scorePlayer === 5 || scoreComputer === 5) {
-        determineWinnerUI(scorePlayer, scoreComputer)
+        setMessage('1... 2... 3...');
+        myTimeout = setTimeout(() => { determineWinnerUI(scorePlayer, scoreComputer) }, 400);
       } else {
         setMessage('1... 2... 3...');
         myTimeout = setTimeout(() => { setMessage('You won this Round...') }, 400);
       }
       break;
     case 'plusComputer':
-      computerScore.textContent = ++scoreComputer;
+      ++scoreComputer;
+      myTimeout = setTimeout(() => { computerScore.textContent = scoreComputer }, 400);
       if (scorePlayer === 5 || scoreComputer === 5) {
-        determineWinnerUI(scorePlayer, scoreComputer)
+        setMessage('1... 2... 3...');
+        myTimeout = setTimeout(() => { determineWinnerUI(scorePlayer, scoreComputer) }, 400);
       } else {
         setMessage('1... 2... 3...');
         myTimeout = setTimeout(() => { setMessage('You lost this Round...') }, 400);
