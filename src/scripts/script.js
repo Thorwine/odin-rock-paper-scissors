@@ -161,7 +161,7 @@ function resetGame() {
   scoreComputer = 0;
   scoreDraw = 0;
 
-  message.textContent = ('Choose your cards!');
+  message.textContent = ('Choose a card!');
   buttons.setAttribute('disabled', 'false');
 
   // Remove the cards shown for both combatants
