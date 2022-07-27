@@ -37,6 +37,8 @@ let scoreDraw = 0;
 function clickCard(playerSelection) {
   // Takes the playerSelection, gets computerSelection and calls playRound
 
+  let myTimeout;
+
   // Only proceed if buttons are not disabled
   if (buttons.getAttribute('disabled') === 'true') { return };
 
@@ -57,31 +59,35 @@ function clickCard(playerSelection) {
 
   // Increase score and update UI
   switch (resultRound) {
-    // +1 for the player
     case 'plusPlayer':
       playerScore.textContent = ++scorePlayer;
-      setMessage('You won this Round...');
+      if (scorePlayer === 5 || scoreComputer === 5) {
+        determineWinnerUI(scorePlayer, scoreComputer)
+      } else {
+        setMessage('1... 2... 3...');
+        myTimeout = setTimeout(() => { setMessage('You won this Round...') }, 400);
+      }
       break;
-    // +1 for the computer
     case 'plusComputer':
       computerScore.textContent = ++scoreComputer;
-      setMessage('You lost this Round...');
+      if (scorePlayer === 5 || scoreComputer === 5) {
+        determineWinnerUI(scorePlayer, scoreComputer)
+      } else {
+        setMessage('1... 2... 3...');
+        myTimeout = setTimeout(() => { setMessage('You lost this Round...') }, 400);
+      }
       break;
-    // +1 draw
     case 'plusDraw':
-      setMessage('It\'s a draw!');
+      setMessage('1... 2... 3...');
+      myTimeout = setTimeout(() => { setMessage('It\'s a draw!') }, 400);
       break;
   }
 
   // Remove and show the selected cards of both combatants with a short delay
-  let myTimeout;
   removeCardPlayer();
   myTimeout = setTimeout(() => { setCardPlayer(playerSelection) }, 400);
   removeCardComputer();
   myTimeout = setTimeout(() => { setCardComputer(computerSelection) }, 400);
-
-  // If one score reaches 5 -> determine the winner
-  if (scorePlayer === 5 || scoreComputer === 5) { determineWinnerUI(scorePlayer, scoreComputer) }
 
 }
 
