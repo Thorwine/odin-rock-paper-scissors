@@ -60,10 +60,16 @@ function clickCard(playerSelection) {
     // +1 for the player
     case 'plusPlayer':
       playerScore.textContent = ++scorePlayer;
+      setMessage('You won this Round...');
       break;
     // +1 for the computer
     case 'plusComputer':
       computerScore.textContent = ++scoreComputer;
+      setMessage('You lost this Round...');
+      break;
+    // +1 draw
+    case 'plusDraw':
+      setMessage('It\'s a draw!');
       break;
   }
 
@@ -105,6 +111,10 @@ function setCardComputer(computerSelection) {
   cardComputer.appendChild(imgComputer);
 }
 
+function setMessage(messageText) {
+  message.textContent = messageText;
+}
+
 function playSound(sound) {
   // Play a funky sound for each card
 
@@ -118,12 +128,12 @@ function determineWinnerUI(scorePlayer, scoreComputer) {
 
   // Win/Lost message
   if (scorePlayer === 5) {
-    message.textContent = 'You won!';
+    setMessage('You won the game!');
     playSound('gamewon');
   };
 
   if (scoreComputer === 5) {
-    message.textContent = 'You lost!';
+    setMessage('You lost the game!');
     playSound('gamelost');
   };
 
